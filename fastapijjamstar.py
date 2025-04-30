@@ -12,13 +12,14 @@ from reportlab.lib.units import mm
 # Create FastAPI instance at module level
 app = FastAPI(title="Invoice Generator API")
 
-# Add CORS middleware
+# Update CORS middleware with specific origins
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["POST", "GET", "OPTIONS"],
     allow_headers=["*"],
+    expose_headers=["Content-Disposition"],
 )
 
 class LineItem(BaseModel):
